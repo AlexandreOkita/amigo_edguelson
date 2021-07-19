@@ -26,6 +26,9 @@ def getLegendaryItems(items):
     legendaryItems = list(filter(legendaryFilter, items))
     return random.sample(legendaryItems, 4)
 
+def getRandomChampion(champions):
+    return random.choice(champions)
+
 @singleton
 class ChampionBuildService:
 
@@ -34,10 +37,13 @@ class ChampionBuildService:
 
     def getRandomChampionBuild(self):
         items = self.lolRepository.itemData
+        champions = self.lolRepository.championData
+
+        champion = getRandomChampion(champions)
 
         mythic = getRandomMythicItem(items)
         boots = getRandomBoots(items)
         legendaries = getLegendaryItems(items)
 
-        return ChampionBuild("JAYCE", [mythic] + [boots] + legendaries)
+        return ChampionBuild(f"{champion.name}, {champion.title}", [mythic] + [boots] + legendaries)
 
