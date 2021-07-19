@@ -4,6 +4,7 @@ from routes.edgarFala import edgarFala
 from routes.edgarJaDeu import edgarJaDeu
 from routes.edgarList import edgarList
 from routes.edgarDelete import edgarDelete
+from routes.edgarAjuda import edgarAjuda
 from di.GlobalObjects import discordService
 
 
@@ -20,7 +21,8 @@ async def on_message(message):
         "edgar_fala": edgarFala,
         "edgar_ja_deu": edgarJaDeu,
         "edgar_list": edgarList,
-        "edgar_delete": edgarDelete
+        "edgar_delete": edgarDelete,
+        "edgar_ajuda": edgarAjuda
     }
 
     await routes[command](message)
