@@ -20,7 +20,13 @@ class FirebaseDb:
         for key, val in self.ref.child(childName).get().items():
             ret[key] = val
         return ret
-            
+
+    def deleteItem(self,childName):
+          if  self.ref.child(childName).delete():
+                  return True
+          else:
+                  return False
+
 
 if __name__ == "__main__":
     firebase = FirebaseDb()
