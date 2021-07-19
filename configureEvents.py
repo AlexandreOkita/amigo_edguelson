@@ -1,4 +1,5 @@
 from events.onMessage import on_message
+
 def configureEvents(client):
 
     events_list = [

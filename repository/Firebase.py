@@ -1,22 +1,14 @@
-#from di.GlobalObjects import getEnv
-import os
+from utils.GetEnv import GetEnv
+from utils.Singleton import singleton
 import firebase_admin
 from firebase_admin import credentials, db
-
-def singleton(class_):
-    instances = {}
-    def getinstance(*args, **kwargs):
-        if class_ not in instances:
-            instances[class_] = class_(*args, **kwargs)
-        return instances[class_]
-    return getinstance
 
 @singleton
 class FirebaseDb:
     def __init__(self):
-        cred = credentials.Certificate("../firebase-secrets.json")
+        cred = credentials.Certificate("./firebase-secrets.json")
         firebase_admin.initialize_app(cred, {
-            'databaseURL': os.getenv("DATABASE_URL")
+            'databaseURL': GetEnv().get("DATABASE_URL")
         })
         self.ref = db.reference("/")
 
