@@ -21,11 +21,18 @@ class FirebaseDb:
             ret[key] = val
         return ret
 
-    def deleteItem(self,childName):
-          if  self.ref.child(childName).delete():
-                  return True
-          else:
-                  return False
+    def deleteOrderedItem(self, childName, position):
+        items = self.getAllItems(childName)
+        pos = 1
+        for item in items:
+            if pos == position:
+                removeItem = item
+                self.ref.child(childName).child(removeItem).delete()
+                return True
+            pos += 1
+        return False
+        
+
 
 
 if __name__ == "__main__":
