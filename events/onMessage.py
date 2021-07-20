@@ -16,7 +16,7 @@ async def on_message(message):
     command = message.content.split()[0]
 
     routes = {
-        "edgar_register": edgarRegister,
+        "edgar_add": edgarRegister,
         "edgar_build": edgarBuild,
         "edgar_fala": edgarFala,
         "edgar_ja_deu": edgarJaDeu,
