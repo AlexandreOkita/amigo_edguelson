@@ -1,6 +1,6 @@
 from configureEvents import configureEvents
-from di.GlobalObjects import discordService
+from di.GlobalObjects import *
 
-if __name__ == "__main__":
+if __name__ == "__main__":    
     configureEvents(discordService.client)
     discordService.runServer()

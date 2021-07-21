@@ -28,6 +28,13 @@ def getAllChampions(championData):
 @singleton
 class Lol:
     def __init__(self):
-        self.itemData = getAllItems(read_json("./resources/item.json"))
+        self.rawItems = read_json("./resources/item.json")
+        self.itemData = getAllItems(self.rawItems)
         self.championData = getAllChampions(read_json("./resources/champion.json"))
 
+    def getItemById(self, itemId):
+        data = self.rawItems["data"]
+        if not itemId in data:
+            itemId = "2003"
+        item = data[itemId]
+        return LolItem(itemId, item["name"], item["description"], item["gold"]["total"])

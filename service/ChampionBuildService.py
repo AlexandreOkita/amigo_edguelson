@@ -14,26 +14,30 @@ def bootFilter(item):
 def legendaryFilter(item):
     return item.gold >= 1600 and not "Passivo Mítico" in item.description
 
-def getRandomMythicItem(items):
-    mythicItems = list(filter(mythicFilter, items))
-    return random.choice(mythicItems)
-
-def getRandomBoots(items):
-    boots = list(filter(bootFilter, items))
-    return random.choice(boots)
-
-def getLegendaryItems(items):
-    legendaryItems = list(filter(legendaryFilter, items))
-    return random.sample(legendaryItems, 4)
-
-def getRandomChampion(champions):
-    return random.choice(champions)
-
 @singleton
 class ChampionBuildService:
 
     def __init__(self, lolRepository: Lol):
         self.lolRepository = lolRepository
+
+    def mythicFilter(self, item):
+        return "Passivo Mítico" in item.description and item.id <= 6693
+
+    def getRandomMythicItem(self):
+        items = self.lolRepository.itemData
+        mythicItems = list(filter(mythicFilter, items))
+        return random.choice(mythicItems)
+
+    def getRandomBoots(self, items):
+        boots = list(filter(bootFilter, items))
+        return random.choice(boots)
+
+    def getLegendaryItems(self, items, qtt=4):
+        legendaryItems = list(filter(legendaryFilter, items))
+        return random.sample(legendaryItems, qtt)
+
+    def getRandomChampion(self, champions):
+        return random.choice(champions)
 
     def getRandomChampionBuild(self):
         items = self.lolRepository.itemData
@@ -41,7 +45,7 @@ class ChampionBuildService:
 
         champion = getRandomChampion(champions)
 
-        mythic = getRandomMythicItem(items)
+        mythic = getRandomMythicItem()
         boots = getRandomBoots(items)
         legendaries = getLegendaryItems(items)
 
