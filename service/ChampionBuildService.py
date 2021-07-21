@@ -43,11 +43,11 @@ class ChampionBuildService:
         items = self.lolRepository.itemData
         champions = self.lolRepository.championData
 
-        champion = getRandomChampion(champions)
+        champion = self.getRandomChampion(champions)
 
-        mythic = getRandomMythicItem()
-        boots = getRandomBoots(items)
-        legendaries = getLegendaryItems(items)
+        mythic = self.getRandomMythicItem()
+        boots = self.getRandomBoots(items)
+        legendaries = self.getLegendaryItems(items)
 
         return ChampionBuild(f"{champion.name}, {champion.title}", [mythic] + [boots] + legendaries)
 

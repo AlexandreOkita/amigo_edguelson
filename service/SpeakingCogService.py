@@ -16,7 +16,7 @@ class SpeakingCogService(commands.Cog):
         self.speak.cancel()
         self.channels[channel] = False
 
-    @tasks.loop(seconds=5.0)
+    @tasks.loop(seconds=300)
     async def speak(self):
         frases = list(self.firebase.getAllItems("frases").values())
         msg = random.choice(frases)

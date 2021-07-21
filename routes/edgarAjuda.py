@@ -6,4 +6,5 @@ async def edgarAjuda(message):
     msg += "**edgar_build**: Eu te mostro minhas melhores builds pra vc pegar challenger\n"
     msg += "**edgar_fala**: Começo a falar com a galera aí\n"
     msg += "**edgar_ja_deu**: Tá bom mano, vou parar de te zuar kkkk\n"
+    msg += "**edgar_fiscaliza [NOME INVOCADOR]**: Vamo ver se você builda certo\n"
     await message.channel.send(msg)
