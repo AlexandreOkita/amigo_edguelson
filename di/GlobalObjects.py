@@ -9,7 +9,7 @@ from riotwatcher import LolWatcher
 
 
 lol = Lol()
-lolWatcher = LolWatcher('RGAPI-14322987-e9ea-4744-a575-30f4f131a08e')
+lolWatcher = LolWatcher('TOKEN')
 lolStatService = LolStatService(lolWatcher, lol, "br1")
 getEnv = GetEnv()
 discordService = DiscordService(getEnv.get("DISCORD_TOKEN"))
